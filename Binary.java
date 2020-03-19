@@ -86,4 +86,72 @@ public class Binary {
         }
         return wynik;
     }
+
+    /**
+     * Metoda zamienia liczbę binarną na (łańcuch znaków) liczbę w systemie szesnatskowym)
+     * @param liczba to liczba w systemie binarnym
+     * @return łańcuch znaków jako liczba szesnatskowa
+     */
+    public String szesnastkowy(int liczba){
+        int[] czworki = {0, 0, 0};
+        String[] prawidlowa = {"", "", ""};
+        czworki[0] = liczba/100000000;
+        czworki[1] = liczba/10000 - czworki[0]*10000;
+        czworki[2] = liczba - czworki[1]*10000 - czworki[0]*100000000;
+        for(int i = 0; i < 3; i++){
+            switch (czworki[i]){
+                case 0:
+                    prawidlowa[i] = "0";
+                    break;
+                case 1:
+                    prawidlowa[i] = "1";
+                    break;
+                case 10:
+                    prawidlowa[i] = "2";
+                    break;
+                case 11:
+                    prawidlowa[i] = "3";
+                    break;
+                case 100:
+                    prawidlowa[i] = "4";
+                    break;
+                case 101:
+                    prawidlowa[i] = "5";
+                    break;
+                case 110:
+                    prawidlowa[i] = "6";
+                    break;
+                case 111:
+                    prawidlowa[i] = "7";
+                    break;
+                case 1000:
+                    prawidlowa[i] = "8";
+                    break;
+                case 1001:
+                    prawidlowa[i] = "9";
+                    break;
+                case 1010:
+                    prawidlowa[i] = "A";
+                    break;
+                case 1011:
+                    prawidlowa[i] = "B";
+                    break;
+                case 1100:
+                    prawidlowa[i] = "C";
+                    break;
+                case 1101:
+                    prawidlowa[i] = "D";
+                    break;
+                case 1110:
+                    prawidlowa[i] = "E";
+                    break;
+                case 1111:
+                    prawidlowa[i] = "F";
+                    break;
+
+            }
+        }
+        String wynik = prawidlowa[0] + prawidlowa[1] + prawidlowa[2];
+        return wynik;
+    }
 }
