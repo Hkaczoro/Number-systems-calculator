@@ -5,18 +5,19 @@
 import static java.lang.Math.*;
 
 public class Binary {
-    public void osemkowy(int liczba){
+    /**
+     * Funkcja zamienia liczbę binarną na liczbę w systemie ósemkowym
+     * @param liczba to liczba binarna(maks 9 bitów) (bez zabezpieczenia)
+     * @return parametr w systemie ósemkowym
+     */
+    public int osemkowy(int liczba){
         int length;
-        length = (int) (Math.log10(liczba) + 1); // ilosc cyfr liczby
-        System.out.println(length);
-        int[] trojki = {0, 0, 0};
-        double[] prawidlowa = {0, 0, 0};
+        length = (int) (Math.log10(liczba) + 1); // ilosc cyfr w liczbie
+        int[] trojki = {0, 0, 0};   //tablica przechowuje wartosci liczby binarnej wedlug schematu: (111)(111(101)
+        double[] prawidlowa = {0, 0, 0};   //tablica przechowuje wartosci liczby w systemie osemkowym wedlug schematu (1)(3)(8)
         trojki[0] = liczba/1000000;
         trojki[1] = liczba/1000 - trojki[0]*1000;
         trojki[2] = liczba - trojki[1]*1000 - trojki[0]*1000000;
-        System.out.println(trojki[0]);
-        System.out.println(trojki[1]);
-        System.out.println(trojki[2]);
         int wykladnik = 2;
         for(int i = 0; i < 3; i++){
             double potega = pow(10, wykladnik);
@@ -50,7 +51,39 @@ public class Binary {
             wykladnik--;
         }
         int wynik = (int) (prawidlowa[0] + prawidlowa[1] + prawidlowa[2]);
-        System.out.println(wynik);
+        return wynik;
     }
 
+    /**
+     * Metoda zamienia liczbę binarną na dziesiętną
+     * @param liczba to liczba binarna (brak zabezpieczenia)
+     * @return parametr w systemie dziesiętnym
+     */
+    public int dziesietny(int liczba){
+        int[] cyfra = {0, 0, 0, 0, 0, 0, 0, 0, 0};
+        int length;
+        length = (int) (Math.log10(liczba) + 1); // ilosc cyfr w liczbie
+        int potegiDziesiatki = (int) pow(10, 8);
+
+        for (int i = 0; i < 9; i++){
+            int x = i;
+            cyfra[i] = liczba/potegiDziesiatki;
+            int wielokrotnosciDziesiatki = 10;
+            int z = 1;
+            while (x != 0) {
+                cyfra[i] -= cyfra[i - z] * wielokrotnosciDziesiatki;
+                wielokrotnosciDziesiatki *= 10;
+                x--;
+                z++;
+            }
+            potegiDziesiatki /= 10;
+        }
+        int wynik = 0;
+        int potega = 8;
+        for(int i = 0; i < 9; i++){
+            wynik += cyfra[i]*pow(2, potega);
+            potega--;
+        }
+        return wynik;
+    }
 }

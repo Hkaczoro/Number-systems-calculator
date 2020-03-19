@@ -7,6 +7,7 @@
 public class Main {
     public static void main(String[] args){
         Binary X = new Binary();
-        X.osemkowy(1010000);   // 0 na początku krzaczy program
+        System.out.println(X.osemkowy(0));   // 0 na początku krzaczy program
+        System.out.println(X.dziesietny(100001111));
     }
 }
