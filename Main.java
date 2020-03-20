@@ -6,7 +6,7 @@
 
 public class Main {
     public static void main(String[] args){
-        Octal Y = new Octal();
-        System.out.println(Y.szesnastkowy(17));
+        Hexadecimal Y = new Hexadecimal();
+        System.out.println(Y.dziesietna("010"));
     }
 }
