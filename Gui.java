@@ -2,6 +2,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
 
 public class Gui extends JFrame implements ActionListener {
     private JRadioButton pierwotnaBinarna, pierwotnaOsemkowa, pierwotnaDziesietna, pierwotnaSzesnastkowa;
@@ -10,7 +11,8 @@ public class Gui extends JFrame implements ActionListener {
     private JLabel binarnaL, binarnaR, osemkowaL, osemkowaR, dziesietnaL, dziesietnaR, szesnastkowaL, szesnastkowaR;
     private JTextField przed, po;
     private JButton zmien;
-    private double przedKonwersja, poKonwersji;
+    private long przedKonwersja, poKonwersji;
+
 
     public Gui(){
         super("Kalkulator systemów liczbowych");
@@ -109,26 +111,26 @@ public class Gui extends JFrame implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
+
         if (pierwotnaBinarna.isSelected()){
             if (konwertBinarna.isSelected()){
                 po.setText(przed.getText());
             }
             else if (konwertOsemkowa.isSelected()){
-                przedKonwersja = (Double.parseDouble(przed.getText()));
+                przedKonwersja = (Long.parseLong(przed.getText()));
                 Binary x = new Binary();
                 poKonwersji = x.osemkowy((int) przedKonwersja);
-                poKonwersji = (int) poKonwersji;
                 po.setText(String.valueOf(poKonwersji));
             }
             else if (konwertDziesietna.isSelected()){
-                przedKonwersja = (Double.parseDouble(przed.getText()));
+                przedKonwersja = (Long.parseLong(przed.getText()));
                 Binary x = new Binary();
                 poKonwersji = x.dziesietny((int) przedKonwersja);
                 poKonwersji = (int) poKonwersji;
                 po.setText(String.valueOf(poKonwersji));
             }
             else if (konwertSzesnastkowa.isSelected()){
-                przedKonwersja = (Double.parseDouble(przed.getText()));
+                przedKonwersja = (Long.parseLong(przed.getText()));
                 Binary x = new Binary();
                 String szesna;
                 szesna = x.szesnastkowy((int)(przedKonwersja));
@@ -137,7 +139,7 @@ public class Gui extends JFrame implements ActionListener {
         }
         else if (pierwotnaOsemkowa.isSelected()){
             if (konwertBinarna.isSelected()){
-                przedKonwersja = (Double.parseDouble(przed.getText()));
+                przedKonwersja = (Long.parseLong(przed.getText()));
                 Octal x = new Octal();
                 poKonwersji = x.binarny((int) przedKonwersja);
                 poKonwersji = (int) poKonwersji;
@@ -147,14 +149,14 @@ public class Gui extends JFrame implements ActionListener {
                 po.setText(przed.getText());
             }
             else if (konwertDziesietna.isSelected()){
-                przedKonwersja = (Double.parseDouble(przed.getText()));
+                przedKonwersja = (Long.parseLong(przed.getText()));
                 Octal x = new Octal();
                 poKonwersji = x.dziesietny((int) przedKonwersja);
                 poKonwersji = (int) poKonwersji;
                 po.setText(String.valueOf(poKonwersji));
             }
             else if (konwertSzesnastkowa.isSelected()){
-                przedKonwersja = (Double.parseDouble(przed.getText()));
+                przedKonwersja = (Long.parseLong(przed.getText()));
                 Octal x = new Octal();
                 String szesna;
                 szesna = x.szesnastkowy((int)(przedKonwersja));
@@ -163,14 +165,13 @@ public class Gui extends JFrame implements ActionListener {
         }
         else if (pierwotnaDziesietna.isSelected()){
             if (konwertBinarna.isSelected()){
-                przedKonwersja = (Double.parseDouble(przed.getText()));
+                przedKonwersja = (Long.parseLong(przed.getText()));
                 Decimal x = new Decimal();
                 poKonwersji = x.binarny((int) przedKonwersja);
-                poKonwersji = (int) poKonwersji;
                 po.setText(String.valueOf(poKonwersji));
             }
             else if (konwertOsemkowa.isSelected()){
-                przedKonwersja = (Double.parseDouble(przed.getText()));
+                przedKonwersja = (Long.parseLong(przed.getText()));
                 Decimal x = new Decimal();
                 poKonwersji = x.osemkowy((int) przedKonwersja);
                 poKonwersji = (int) poKonwersji;
@@ -180,7 +181,7 @@ public class Gui extends JFrame implements ActionListener {
                 po.setText(przed.getText());
             }
             else if (konwertSzesnastkowa.isSelected()){
-                przedKonwersja = (Double.parseDouble(przed.getText()));
+                przedKonwersja = (Long.parseLong(przed.getText()));
                 Decimal x = new Decimal();
                 String szesna;
                 szesna = x.szesnastkowy((int)(przedKonwersja));
@@ -207,5 +208,7 @@ public class Gui extends JFrame implements ActionListener {
                 po.setText(przed.getText());
             }
         }
+
     }
+
 }

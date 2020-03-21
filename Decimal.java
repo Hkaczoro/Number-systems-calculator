@@ -6,20 +6,20 @@ import static java.lang.Math.pow;
 
 public class Decimal {
     /**
-     * Metoda zmienia liczbe dziesiętną na binaran
+     * Metoda zmienia liczbe dziesiętną na binarną
      * @param liczba to liczba w systemie dziesiętnym
      * @return liczba w systemie binarnym
      */
-    public int binarny(int liczba){
-        int[] binarna = new int[10];
-        int wynik = 0;
+    public long binarny(long liczba){
+        long[] binarna = new long[18];
+        long wynik = 0;
         int x = 0;
         while (liczba > 0){
             binarna[x] = liczba%2;
             liczba /= 2;
             x++;
         }
-        int mnoznik = 1;
+        long mnoznik = 1;
         for(int i = 0; i < binarna.length; i++){
             wynik += binarna[i]*mnoznik;
             mnoznik *= 10;
@@ -59,7 +59,7 @@ public class Decimal {
      * @return łańcuch znaków (liczba) w systemie szesnastkowym
      */
     public String szesnastkowy(int liczba){
-        int[] binarna = new int[10];
+        int[] binarna = new int[11];
         int wynik = 0;
         int x = 0;
         while (liczba > 0){
