@@ -59,7 +59,7 @@ public class Binary {
      * @param liczba to liczba binarna (brak zabezpieczenia)
      * @return parametr w systemie dziesiętnym
      */
-    public int dziesietny(int liczba){
+    public long dziesietny(long liczba){
         int[] cyfra = {0, 0, 0, 0, 0, 0, 0, 0, 0};
         int length;
         length = (int) (Math.log10(liczba) + 1); // ilosc cyfr w liczbie
@@ -67,7 +67,7 @@ public class Binary {
 
         for (int i = 0; i < 9; i++){
             int x = i;
-            cyfra[i] = liczba/potegiDziesiatki;
+            cyfra[i] = (int) (liczba/potegiDziesiatki);
             int wielokrotnosciDziesiatki = 10;
             int z = 1;
             while (x != 0) {

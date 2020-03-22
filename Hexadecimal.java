@@ -2,11 +2,20 @@ import static java.lang.Math.pow;
 
 public class Hexadecimal {
     public long binarna(String liczba) {
+        int dlugosc = liczba.length();
         char[] znak = liczba.toCharArray();
-        int[] liczbaP = new int[3];
-        int wynik = 0;
-        for(int i = 0; i < znak.length; i++){
-            switch (znak[i]){
+        long[] liczbaP = new long[dlugosc];
+        long wynik = 0;
+        int mnoznik;
+        if (dlugosc == 1) {
+            mnoznik = 1;
+        } else if (dlugosc == 2) {
+            mnoznik = 10000;
+        } else {
+            mnoznik = 100000000;
+        }
+        for (int i = 0; i < znak.length; i++) {
+            switch (znak[i]) {
                 case '0':
                     liczbaP[i] = 0;
                     break;
@@ -58,19 +67,27 @@ public class Hexadecimal {
 
             }
         }
-        int mnoznik = 100000000;
-        for(int i = 0; i < 3; i++){
-            wynik += liczbaP[i]*mnoznik;
+        for (int i = 0; i < znak.length; i++) {
+            wynik += liczbaP[i] * mnoznik;
             mnoznik /= 10000;
         }
         return wynik;
     }
-    public int osemkowa(String liczba){
+    public long osemkowa(String liczba){
+        int dlugosc = liczba.length();
         char[] znak = liczba.toCharArray();
-        int[] liczbaP = new int[3];
-        int wynik = 0;
-        for(int i = 0; i < znak.length; i++){
-            switch (znak[i]){
+        long[] liczbaP = new long[dlugosc];
+        long wynik = 0;
+        int mnoznik;
+        if (dlugosc == 1) {
+            mnoznik = 1;
+        } else if (dlugosc == 2) {
+            mnoznik = 10000;
+        } else {
+            mnoznik = 100000000;
+        }
+        for (int i = 0; i < znak.length; i++) {
+            switch (znak[i]) {
                 case '0':
                     liczbaP[i] = 0;
                     break;
@@ -122,57 +139,88 @@ public class Hexadecimal {
 
             }
         }
-        int mnoznik = 100000000;
-        for(int i = 0; i < 3; i++) {
+        for (int i = 0; i < znak.length; i++) {
             wynik += liczbaP[i] * mnoznik;
             mnoznik /= 10000;
         }
+        int length;
+        length = (int) (Math.log10(wynik) + 1); // ilosc cyfr w liczbie
+
         int[] trojki = {0, 0, 0};   //tablica przechowuje wartosci liczby binarnej wedlug schematu: (111)(111(101)
-        double[] prawidlowa = {0, 0, 0};   //tablica przechowuje wartosci liczby w systemie osemkowym wedlug schematu (1)(3)(8)
-        trojki[0] = wynik/1000000;
-        trojki[1] = wynik/1000 - trojki[0]*1000;
-        trojki[2] = wynik - trojki[1]*1000 - trojki[0]*1000000;
-        int wykladnik = 2;
-        for(int i = 0; i < 3; i++){
+        long[] prawidlowa = {0, 0, 0};//tablica przechowuje wartosci liczby w systemie osemkowym wedlug schematu (1)(3)(8)
+        long a, b, c;
+        a = (wynik/1000000);
+        b = (wynik/1000 - a*1000);
+        c = (wynik - b*1000 - a*1000000);
+        a = (int) a;
+        b = (int) b;
+        c = (int) c;
+        trojki[0] = (int) a;
+        trojki[1] = (int) b;
+        trojki[2] = (int) c;
+        int wykladnik;
+        int dlugoscA;
+        if (trojki[2] == 0){
+            dlugoscA = 2;
+            wykladnik = 1;
+        }
+        else if (trojki[1] == 0){
+            dlugoscA = 1;
+            wykladnik = 0;
+        }
+        else {
+            dlugoscA = 3;
+            wykladnik = 2;
+        }
+        for(int i = 0; i < dlugoscA; i++){
             double potega = pow(10, wykladnik);
             switch (trojki[i]){
                 case 0:
-                    prawidlowa[i] = 0*potega;
+                    prawidlowa[i] = (long) (0*potega);
                     break;
                 case 1:
-                    prawidlowa[i] = 1*potega;
+                    prawidlowa[i] = (long) (1*potega);
                     break;
                 case 10:
-                    prawidlowa[i] = 2*potega;
+                    prawidlowa[i] = (long) (2*potega);
                     break;
                 case 11:
-                    prawidlowa[i] = 3*potega;
+                    prawidlowa[i] = (long) (3*potega);
                     break;
                 case 100:
-                    prawidlowa[i] = 4*potega;
+                    prawidlowa[i] = (long) (4*potega);
                     break;
                 case 101:
-                    prawidlowa[i] = 5*potega;
+                    prawidlowa[i] = (long) (5*potega);
                     break;
                 case 110:
-                    prawidlowa[i] = 6*potega;
+                    prawidlowa[i] = (long) (6*potega);
                     break;
                 case 111:
-                    prawidlowa[i] = 7*potega;
+                    prawidlowa[i] = (long) (7*potega);
                     break;
 
             }
             wykladnik--;
         }
-        int koniec = (int) (prawidlowa[0] + prawidlowa[1] + prawidlowa[2]);
+        long koniec = (prawidlowa[0] + prawidlowa[1] + prawidlowa[2]);
         return koniec;
     }
     public int dziesietna(String liczba){
+        int dlugosc = liczba.length();
         char[] znak = liczba.toCharArray();
-        int[] liczbaP = new int[3];
-        int wynik = 0;
-        for(int i = 0; i < znak.length; i++){
-            switch (znak[i]){
+        long[] liczbaP = new long[dlugosc];
+        long wynik = 0;
+        int mnoznik;
+        if (dlugosc == 1) {
+            mnoznik = 1;
+        } else if (dlugosc == 2) {
+            mnoznik = 10000;
+        } else {
+            mnoznik = 100000000;
+        }
+        for (int i = 0; i < znak.length; i++) {
+            switch (znak[i]) {
                 case '0':
                     liczbaP[i] = 0;
                     break;
@@ -224,13 +272,12 @@ public class Hexadecimal {
 
             }
         }
-        int mnoznik = 100000000;
-        for(int i = 0; i < 3; i++){
-            wynik += liczbaP[i]*mnoznik;
+        for (int i = 0; i < znak.length; i++) {
+            wynik += liczbaP[i] * mnoznik;
             mnoznik /= 10000;
         }
         Binary a = new Binary();
-        int z = a.dziesietny(wynik);
+        int z = (int) a.dziesietny(wynik);
         return z;
     }
 }

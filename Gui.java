@@ -12,13 +12,15 @@ public class Gui extends JFrame implements ActionListener {
     private JTextField przed, po;
     private JButton zmien;
     private long przedKonwersja, poKonwersji;
+    private Component frame;
+    private Number x = new Number();
 
 
     public Gui(){
         super("Kalkulator systemów liczbowych");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(400, 600);
-        setLocation(20, 20);
+        setSize(400, 520);
+        setLocation(50, 50);
         pierwotna = new ButtonGroup();
         pierwotnaBinarna = new JRadioButton("", true);
         pierwotnaOsemkowa = new JRadioButton("");
@@ -113,99 +115,134 @@ public class Gui extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent e) {
 
         if (pierwotnaBinarna.isSelected()){
-            if (konwertBinarna.isSelected()){
-                po.setText(przed.getText());
+            przedKonwersja = (Integer.parseInt(przed.getText()));
+       //     JOptionPane.showMessageDialog(frame, "Eggs are not supposed to be green.");
+            if (x.poprawnoscBinarnej((int) przedKonwersja)) {
+                if (konwertBinarna.isSelected()) {
+                    po.setText(przed.getText());
+                } else if (konwertOsemkowa.isSelected()) {
+                    przedKonwersja = (Long.parseLong(przed.getText()));
+                    Binary x = new Binary();
+                    poKonwersji = x.osemkowy((int) przedKonwersja);
+                    po.setText(String.valueOf(poKonwersji));
+                } else if (konwertDziesietna.isSelected()) {
+                    przedKonwersja = (Long.parseLong(przed.getText()));
+                    Binary x = new Binary();
+                    poKonwersji = x.dziesietny((int) przedKonwersja);
+                    poKonwersji = (int) poKonwersji;
+                    po.setText(String.valueOf(poKonwersji));
+                } else if (konwertSzesnastkowa.isSelected()) {
+                    przedKonwersja = (Long.parseLong(przed.getText()));
+                    Binary x = new Binary();
+                    String szesna;
+                    szesna = x.szesnastkowy((int) (przedKonwersja));
+                    po.setText(szesna);
+                }
             }
-            else if (konwertOsemkowa.isSelected()){
-                przedKonwersja = (Long.parseLong(przed.getText()));
-                Binary x = new Binary();
-                poKonwersji = x.osemkowy((int) przedKonwersja);
-                po.setText(String.valueOf(poKonwersji));
-            }
-            else if (konwertDziesietna.isSelected()){
-                przedKonwersja = (Long.parseLong(przed.getText()));
-                Binary x = new Binary();
-                poKonwersji = x.dziesietny((int) przedKonwersja);
-                poKonwersji = (int) poKonwersji;
-                po.setText(String.valueOf(poKonwersji));
-            }
-            else if (konwertSzesnastkowa.isSelected()){
-                przedKonwersja = (Long.parseLong(przed.getText()));
-                Binary x = new Binary();
-                String szesna;
-                szesna = x.szesnastkowy((int)(przedKonwersja));
-                po.setText(szesna);
+            else {
+                JOptionPane.showMessageDialog(frame, "Sprawdź poprawność twojej liczby. \n Maksymalna liczba cyfr: 9");
             }
         }
         else if (pierwotnaOsemkowa.isSelected()){
-            if (konwertBinarna.isSelected()){
-                przedKonwersja = (Long.parseLong(przed.getText()));
-                Octal x = new Octal();
-                poKonwersji = x.binarny((int) przedKonwersja);
-                poKonwersji = (int) poKonwersji;
-                po.setText(String.valueOf(poKonwersji));
+            przedKonwersja = (Integer.parseInt(przed.getText()));
+            if (x.poprawnoscOsemkowej((int) przedKonwersja)) {
+                if (konwertBinarna.isSelected()) {
+                    przedKonwersja = (Long.parseLong(przed.getText()));
+                    Octal x = new Octal();
+                    poKonwersji = x.binarny((int) przedKonwersja);
+                    poKonwersji = (int) poKonwersji;
+                    po.setText(String.valueOf(poKonwersji));
+                } else if (konwertOsemkowa.isSelected()) {
+                    po.setText(przed.getText());
+                } else if (konwertDziesietna.isSelected()) {
+                    przedKonwersja = (Long.parseLong(przed.getText()));
+                    Octal x = new Octal();
+                    poKonwersji = x.dziesietny((int) przedKonwersja);
+                    poKonwersji = (int) poKonwersji;
+                    po.setText(String.valueOf(poKonwersji));
+                } else if (konwertSzesnastkowa.isSelected()) {
+                    przedKonwersja = (Long.parseLong(przed.getText()));
+                    Octal x = new Octal();
+                    String szesna;
+                    szesna = x.szesnastkowy((int) (przedKonwersja));
+                    po.setText(szesna);
+                }
             }
-            else if (konwertOsemkowa.isSelected()){
-                po.setText(przed.getText());
-            }
-            else if (konwertDziesietna.isSelected()){
-                przedKonwersja = (Long.parseLong(przed.getText()));
-                Octal x = new Octal();
-                poKonwersji = x.dziesietny((int) przedKonwersja);
-                poKonwersji = (int) poKonwersji;
-                po.setText(String.valueOf(poKonwersji));
-            }
-            else if (konwertSzesnastkowa.isSelected()){
-                przedKonwersja = (Long.parseLong(przed.getText()));
-                Octal x = new Octal();
-                String szesna;
-                szesna = x.szesnastkowy((int)(przedKonwersja));
-                po.setText(szesna);
+            else{
+                JOptionPane.showMessageDialog(frame, "Sprawdź poprawność twojej liczby. \n Maksymalna liczba cyfr: 3");
             }
         }
         else if (pierwotnaDziesietna.isSelected()){
+            przedKonwersja = (Integer.parseInt(przed.getText()));
             if (konwertBinarna.isSelected()){
-                przedKonwersja = (Long.parseLong(przed.getText()));
-                Decimal x = new Decimal();
-                poKonwersji = x.binarny((int) przedKonwersja);
-                po.setText(String.valueOf(poKonwersji));
+                if (x.poprawnoscDziesietnejDwojkowej((int) przedKonwersja)){
+                    przedKonwersja = (Long.parseLong(przed.getText()));
+                    Decimal x = new Decimal();
+                    poKonwersji = x.binarny((int) przedKonwersja);
+                    po.setText(String.valueOf(poKonwersji));
+                }
+                else {
+                    JOptionPane.showMessageDialog(frame, "Sprawdź poprawność twojej liczby. \n Maksymalna liczba cyfr: 5");
+                }
             }
-            else if (konwertOsemkowa.isSelected()){
-                przedKonwersja = (Long.parseLong(przed.getText()));
-                Decimal x = new Decimal();
-                poKonwersji = x.osemkowy((int) przedKonwersja);
-                poKonwersji = (int) poKonwersji;
-                po.setText(String.valueOf(poKonwersji));
+                else if (x.poprawnoscDziesietnejOsemkowej((int) przedKonwersja)) {
+
+
+                if (konwertOsemkowa.isSelected()) {
+                    przedKonwersja = (Long.parseLong(przed.getText()));
+                    Decimal x = new Decimal();
+                    poKonwersji = x.osemkowy((int) przedKonwersja);
+                    poKonwersji = (int) poKonwersji;
+                    po.setText(String.valueOf(poKonwersji));
+                }
             }
-            else if (konwertDziesietna.isSelected()){
-                po.setText(przed.getText());
-            }
-            else if (konwertSzesnastkowa.isSelected()){
-                przedKonwersja = (Long.parseLong(przed.getText()));
-                Decimal x = new Decimal();
-                String szesna;
-                szesna = x.szesnastkowy((int)(przedKonwersja));
-                po.setText(szesna);
-            }
+                else {
+                    JOptionPane.showMessageDialog(frame, "Sprawdź poprawność twojej liczby. \n Maksymalna liczba cyfr: 8");
+                }
+                if (konwertDziesietna.isSelected()){
+                    po.setText(przed.getText());
+                }
+                if (x.poprawnoscDziesietnejSzesnastkowej((int) przedKonwersja)) {
+
+
+                    if (konwertSzesnastkowa.isSelected()) {
+                        przedKonwersja = (Long.parseLong(przed.getText()));
+                        Decimal x = new Decimal();
+                        String szesna;
+                        szesna = x.szesnastkowy((int) (przedKonwersja));
+                        po.setText(szesna);
+                    }
+                }
+                else {
+                    JOptionPane.showMessageDialog(frame, "Sprawdź poprawność twojej liczby. \n Maksymalna liczba cyfr: 3");
+                }
+
         }
         else if (pierwotnaSzesnastkowa.isSelected()){
-            if (konwertBinarna.isSelected()){
-                Hexadecimal x = new Hexadecimal();
-                String z = przed.getText();
-                po.setText(String.valueOf(x.binarna(z)));
+            String z = przed.getText();
+            if (x.poprawnoscSzesnastkowej(z)) {
+
+                if (konwertBinarna.isSelected()) {
+                    Hexadecimal x = new Hexadecimal();
+                    z = przed.getText();
+                    po.setText(String.valueOf(x.binarna(z)));
+                }
+                else if (konwertOsemkowa.isSelected()) {
+                    Hexadecimal x = new Hexadecimal();
+                    z = przed.getText();
+                    po.setText(String.valueOf(x.osemkowa(z)));
+                }
+                else if (konwertDziesietna.isSelected()) {
+                    Hexadecimal x = new Hexadecimal();
+                    z = przed.getText();
+                    po.setText(String.valueOf(x.dziesietna(z)));
+                }
+                else if (konwertSzesnastkowa.isSelected()) {
+                    po.setText(przed.getText());
+                }
             }
-            else if (konwertOsemkowa.isSelected()){
-                Hexadecimal x = new Hexadecimal();
-                String z = przed.getText();
-                po.setText(String.valueOf(x.osemkowa(z)));
-            }
-            else if (konwertDziesietna.isSelected()){
-                Hexadecimal x = new Hexadecimal();
-                String z = przed.getText();
-                po.setText(String.valueOf(x.dziesietna(z)));
-            }
-            else if (konwertSzesnastkowa.isSelected()){
-                po.setText(przed.getText());
+            else {
+                JOptionPane.showMessageDialog(frame, "Sprawdź poprawność twojej liczby. \n Maksymalna liczba znaków: 3");
             }
         }
 
