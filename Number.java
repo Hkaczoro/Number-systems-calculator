@@ -1,10 +1,7 @@
-import com.sun.source.tree.ContinueTree;
+/**
+ * Klasa zawiera metody to sprawdzania poprawnosci danych wprowadzanych w aplikacji
+ */
 
-import javax.swing.*;
-import java.awt.*;
-import java.time.temporal.ValueRange;
-
-import static java.lang.Math.pow;
 
 public class Number {
     public boolean poprawnoscBinarnej(int liczba) {

@@ -1,3 +1,7 @@
+/**
+ * Klasa opisuje graficzny interfejs użytkownika i metody z nim związane
+ */
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;

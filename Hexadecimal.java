@@ -1,6 +1,15 @@
+/**
+ * Klasa zawiera metody na zmianę liczby binarnej na inne(binarny, ósemkowy, dziesiętny)
+ */
+
 import static java.lang.Math.pow;
 
 public class Hexadecimal {
+    /**
+     * Klasa zmienia liczbę systemu szesnastkowego na liczbę w systemie binarnym
+     * @param liczba to łancuch znaków (liczba) w systemie szesnastkowym
+     * @return liczba w systemie binarnym
+     */
     public long binarna(String liczba) {
         int dlugosc = liczba.length();
         char[] znak = liczba.toCharArray();
@@ -73,6 +82,12 @@ public class Hexadecimal {
         }
         return wynik;
     }
+
+    /**
+     * Metoda zmienia liczbę w systemie szesnastkowym na liczbę w systemie binarnym
+     * @param liczba to łańcuch znaków w systemie szesnastkowym
+     * @return liczba w systemie ósemkowym
+     */
     public long osemkowa(String liczba){
         int dlugosc = liczba.length();
         char[] znak = liczba.toCharArray();
@@ -209,6 +224,12 @@ public class Hexadecimal {
         long koniec = (prawidlowa[0] + prawidlowa[1] + prawidlowa[2]);
         return koniec;
     }
+
+    /**
+     * Metoda zmienia liczbę w systemie szesnastkowym na liczbę w systemie dziesiętnym
+     * @param liczba w systemie szesnatskowym
+     * @return liczba w systemie dziesiętnym
+     */
     public int dziesietna(String liczba){
         int dlugosc = liczba.length();
         char[] znak = liczba.toCharArray();
@@ -282,10 +303,6 @@ public class Hexadecimal {
         Binary a = new Binary();
         int z = (int) a.dziesietny(wynik);
         return z;
-    }
-    public static void main(String[] args){
-        Hexadecimal c = new Hexadecimal();
-        System.out.println(c.osemkowa("100"));
     }
 }
 
