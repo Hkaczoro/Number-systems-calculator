@@ -146,15 +146,18 @@ public class Hexadecimal {
         int length;
         length = (int) (Math.log10(wynik) + 1); // ilosc cyfr w liczbie
 
-        int[] trojki = {0, 0, 0};   //tablica przechowuje wartosci liczby binarnej wedlug schematu: (111)(111(101)
+        int[] trojki = {0, 0, 0, 0};   //tablica przechowuje wartosci liczby binarnej wedlug schematu: (111)(111(101)
         long[] prawidlowa = {0, 0, 0};//tablica przechowuje wartosci liczby w systemie osemkowym wedlug schematu (1)(3)(8)
-        long a, b, c;
-        a = (wynik/1000000);
-        b = (wynik/1000 - a*1000);
-        c = (wynik - b*1000 - a*1000000);
+        long a, b, c, d;
+        long zastepcza = (long) Math.pow(10,12);
+        a = (wynik/1000000000);
+        b = (wynik/1000000 - a*1000000000);
+        c = (wynik/1000 - b*1000000 - a*1000000000);
+        d = wynik - c*1000 - b*1000000 - a*1000000000;
         a = (int) a;
         b = (int) b;
         c = (int) c;
+        d = (int) d;
         trojki[0] = (int) a;
         trojki[1] = (int) b;
         trojki[2] = (int) c;
@@ -164,7 +167,7 @@ public class Hexadecimal {
             dlugoscA = 2;
             wykladnik = 1;
         }
-        else if (trojki[1] == 0){
+        else if (trojki[1] == 0 && trojki[2] == 0){
             dlugoscA = 1;
             wykladnik = 0;
         }
@@ -280,4 +283,9 @@ public class Hexadecimal {
         int z = (int) a.dziesietny(wynik);
         return z;
     }
+    public static void main(String[] args){
+        Hexadecimal c = new Hexadecimal();
+        System.out.println(c.osemkowa("100"));
+    }
 }
+

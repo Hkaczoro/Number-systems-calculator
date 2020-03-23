@@ -85,12 +85,12 @@ public class Number {
     public boolean poprawnoscSzesnastkowej(String liczba){
         int dlugosc = liczba.length();
         int sprawdzian = 0;
-        if (dlugosc > 3){
+        if (dlugosc != 3){
             return false;
         }
         else {
             char[] znak = liczba.toCharArray();
-            for(int i = 0; i < 3;i++){
+            for(int i = 0; i < 3; i++){
                 switch (znak[i]){
                     case '0':
                         break;

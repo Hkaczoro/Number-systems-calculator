@@ -3,6 +3,8 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
+import java.net.URI;
+import java.awt.Desktop;
 
 public class Gui extends JFrame implements ActionListener {
     private JRadioButton pierwotnaBinarna, pierwotnaOsemkowa, pierwotnaDziesietna, pierwotnaSzesnastkowa;
@@ -15,12 +17,11 @@ public class Gui extends JFrame implements ActionListener {
     private Component frame;
     private Number x = new Number();
 
-
     public Gui(){
         super("Kalkulator systemów liczbowych");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(400, 520);
-        setLocation(50, 50);
+        setLocation(100, 100);
         pierwotna = new ButtonGroup();
         pierwotnaBinarna = new JRadioButton("", true);
         pierwotnaOsemkowa = new JRadioButton("");
@@ -242,10 +243,9 @@ public class Gui extends JFrame implements ActionListener {
                 }
             }
             else {
-                JOptionPane.showMessageDialog(frame, "Sprawdź poprawność twojej liczby. \n Maksymalna liczba znaków: 3");
+                JOptionPane.showMessageDialog(frame, "Sprawdź poprawność twojej liczby. \n Wymagana liczba znaków: 3");
             }
         }
 
     }
-
 }
